@@ -1,0 +1,43 @@
+<!--Creator: Eli Hughes
+	File: login.html
+	Purpose: Takes username/password and submits that information to 'admin.html'. Handles logoff request from 'admin.html'.
+			 This file includes 'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+
+<?php
+if(!empty($_REQUEST['logoff'])) $_SESSION['user'] = null;
+?>
+
+<html>
+	<head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Login: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script language='javascript' src='script.js'></script>
+	</head>
+	<body>
+    	<div id='content'>
+        	<form action='admin.html' method='post'>
+            	<table id='loginForm'>
+                	<tr>
+                    	<td>Username: </td>
+                    	<td class='input'><input name='user'></td>
+                	</tr>
+                	<tr>
+                    	<td>Password: </td>
+                    	<td class='input'><input name='pass' type='password'></td>
+                	</tr>
+                    <tr id='login'>
+                    	<td colspan='2'><button id='loginBtn' type='submit'>Login</button></td>
+                	</tr>
+                </table>
+        	</form>
+    	</div>
+    	<?php
+		include('header.inc');
+		include('menu.inc');
+		include('footer.inc');
+		?>
+	</body>
+</html>

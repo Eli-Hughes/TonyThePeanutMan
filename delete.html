@@ -1,0 +1,41 @@
+<!--Creator: Eli Hughes
+	File: delete.html
+	Purpose: Asks adminstrator for confirmation to delete product which they selected from 'admin.html'. If no, submit to
+			 'admin.html' with no 'deleteProduct' POST data. If yes, submit to 'admin.html' with applicable 'deleteProduct'
+			 POST data ('admin.html' finalizes deletion). This file includes 'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+
+<html>
+	<head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Delete: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script language='javascript' src='script.js'></script>
+	</head>
+	<body>
+    	<div id='content'>
+        <?php
+		print "Are You Sure You Want To Delete: ".$_POST['productName']."?";
+		print "<br>";
+		print "<br>";
+		print "<form action='admin.html' method='post'>
+		<input type='hidden' name='user' value='".$_POST['user']."'>
+		<input type='hidden' name='pass' value='".$_POST['pass']."'>
+		<input type='hidden' name='deleteProduct' value='".$_POST['deleteProduct']."'>
+		<button type='submit' class='deleteBtn'>Yes</button>
+		</form>";
+		print "<form action='admin.html' method='post'>
+		<input type='hidden' name='user' value='".$_POST['user']."'>
+		<input type='hidden' name='pass' value='".$_POST['pass']."'>
+		<button type='submit' class='deleteBtn'>No</button>
+		</form>";
+		?>
+    	</div>
+    	<?php
+		include('header.inc');
+		include('menu.inc');
+		include('footer.inc');
+		?>
+	</body>
+</html>

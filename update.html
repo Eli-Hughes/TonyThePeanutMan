@@ -1,0 +1,63 @@
+<!--Creator: Eli Hughes
+	File: update.html
+	Purpose: This file allows an adminstrator to change to following product information: image, name, price, and description. 'update.html'
+	         submits to 'admin.html' along with adminstrators product changes (via POST). Changes are finalized in 'admin.html'. This file 
+			 includes 'header.inc', 'menu.inc', and 'footer.inc'.
+			 
+-->
+
+<?php
+require('admin_header.inc');
+?>
+
+<html>
+	<head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Update: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script language='javascript' src='script.js'></script>
+	</head>
+	<body>
+    	<div id='content'>
+        	<?php
+			print "You Are Updating: ".$_POST['productName']."";
+			?>
+        	<br>
+        	<br>
+        	<form enctype='multipart/form-data' action='admin.html' method='post'>
+            	<input type='hidden' name='MAX_FILE_SIZE' value='1900000'>
+            	<table id='updateForm'>
+                	<tr>
+                    	<td>Update Image: </td>
+                    	<td class='input'><input type='file' name='updateImage'></td>
+                	</tr>
+                	<tr>
+                    	<td>Update Name: </td>
+                    	<td class='input'><input name='updateName'></td>
+                	</tr>
+                	<tr>
+                    	<td>Update Price: </td>
+                    	<td class='input'><input name='updatePrice'></td>
+                	</tr>
+                	<tr>
+                    	<td>Update Description: </td>
+                    	<td><textarea id='updateDescription' name='updateDescription'></textarea></td>
+                	</tr>
+                	<?php
+					print "<input name='user' type='hidden' value='".$_POST['user']."'>
+							<input name='pass' type='hidden' value='".$_POST['pass']."'>
+							<input name='product' type='hidden' value='".$_POST['product']."'>"		
+					?>
+                </table>
+            	<br>
+            	<button id='updateBtn' type='submit'>Update</button>
+        	</form>
+    	</div>
+    	<?php
+		include('header.inc');
+		include('menu.inc');
+		include('footer.inc');
+		?>
+	</body>
+</html>

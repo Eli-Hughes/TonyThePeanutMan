@@ -1,0 +1,134 @@
+<!--Creator: Eli Hughes
+    File: products.html
+    Purpose: html file which serves as the products page for the company "Tony the Peanut Man".
+             The primary purpose of the file is to provide information on all of the products 
+             offered and how to order them (both online and in-store). This file also contains 
+             links to 'style.css', 'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+<html>
+    <head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Products: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+    </head>
+    <body>
+        <!--Product list and order information-->
+        <div id='content'>
+            <h2 id='contentHeader1'>All of Tony's Offerings!</h2>
+            <!--Product list in the form of a table. Includes product pictures, names, prices, and descriptions-->
+            <table id='productTable'>
+            <?php
+			require_once('db.inc');
+			$result = $db->query('select * from Products');
+			while($row = $result->fetch_object()) {
+				print "<tr>";
+				print "<td><img class='productImg' src='product".$row->id.".jpg' alt='".$row->name."'></td>";
+				print "<td><b>".$row->name."</b></td>";
+				print "<td>$".$row->price."</td>";
+				print "<td class='productDescription'>".$row->description."</td>";
+				print "<td><form action='order.html'>
+					<input type='hidden' name='product' value='".$row->id."'>
+					<input type='hidden' name='qty' value='1'>
+					<button class='addToCartBtn' type='submit'>Add to Cart</button>
+					</form></td>";
+				print "</tr>";
+			}
+			?>
+                <!-- Old, static product table contents -->
+                
+                <!--<tr>
+                    <th><b><u>Product</u></b></th>
+                    <th></th>
+                    <th><b><u>Price</u></b></th>
+                    <th><b><u>Description</u></b></th>
+                </tr>
+                <tr>              	
+                    <td><img id='boiledPeanutsImg' src='boiledpeanuts.jpg' alt='boiled peanuts'></td>
+                	<td>
+                    	Boiled
+                    	<br>
+                    	Peanuts
+            		</td>
+                    <td>$10</td>
+                    <td>
+                        3 lbs of southern caviar shipped direct to your door. For those of you who grew up eating
+                        <br>
+                        boiled peanuts and have moved out of the south or for those of you who want to try a little
+                        <br>
+                        something different we will cook these and deliver them fresh to your door.
+                    </td>
+                    <td>
+                        <form action='order.html'>
+                        	<input type='hidden' name='product' value='1'>
+                            <button class='addToCartBtn' type='submit'>Add to Cart</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img id='roastedPeanutsImg' src='roastedpeanuts.jpg' alt='roasted peanuts'></td>
+                    <td>
+                        Roasted
+                        <br>
+                        Peanuts
+                    </td>
+                    <td>$10</td>
+                    <td>
+                        3 lbs of the best roasted peanuts shipped direct to your door. For those Yanks who can't
+                        <br>
+                        handle the goodness of our boiled favorite, Tony dry roasts nuts, in the shell with a sea salt
+                        <br>
+                        blend.
+                    </td>
+                    <td>
+                        <form action='order.html'>
+                        	<input type='hidden' name='product' value='2'>
+                            <button class='addToCartBtn' type='submit'>Add to Cart</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img id='tShirtImg' src='tshirt.jpg' alt='T-shirt'></td>
+                    <td>T-shirt</td>
+                    <td>$15</td>
+                    <td>Get your own Tony the Peanut Man T-Shirt, just like Tony wears! It's Peanut Tyme Y'all!</td>
+                    <td>
+                        <form action='order.html'>
+                        	<input type='hidden' name='product' value='3'>
+                            <button class='addToCartBtn' type='submit'>Add to Cart</button>
+                        </form>
+                    </td>
+                </tr>-->
+            </table>
+
+            <hr>
+
+            <!--Information for the customer regarding orders (both online and in-store)-->
+            <h3 id='contentHeader2'>Orders:</h3>
+            <p id='orderInfo'>
+                Peanuts can be purchased online 24/7 or at the store (see operating hours above).
+                <br>
+                <br>
+                <i>For online orders:</i>
+                <br>
+                Standard Shipping: 5-10 business days
+                <br>
+                Two-Day Shipping: guarunteed 2 days
+                <br>
+                <br>
+                *(If you live in mountain or pacific time zone please select 2 day shipping to ensure freshness.
+                <br>
+                Boiled peanuts have a shelf life of no more than 2 weeks refrigerated and no more than 3 days non
+                <br>
+                refrigerated. So when they arrive make sure you put them in the refrigerator.)
+            </p>
+        </div>
+
+        <?php
+        include('header.inc');
+        include('menu.inc');
+        include('footer.inc');
+        ?>
+
+    </body>
+</html>

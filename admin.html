@@ -1,0 +1,131 @@
+<!--Creator: Eli Hughes
+	File: admin.html
+	Purpose: html file which gives an administrator the ability to view currently listed products, edit an existing product,
+			 delete an existing product, or add a new product. This file includes 'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+
+<?php
+require('admin_header.inc');
+
+// Update the row in the Products table that has the id = $_POST['product'] with the information sent from the form in update.html. Update the image stored on the server.
+// If one of the fields was left blank, do not perform an update.
+if (!empty($_POST['product']) && !empty($_POST['updateName']) && !empty($_POST['updatePrice']) && !empty($_POST['updateDescription']) && ($_FILES['updateImage']['size'] > 0)) {
+	move_uploaded_file($_FILES['updateImage']['tmp_name'], 'product'.$_POST['product'].'.jpg');
+	require_once('db.inc');
+	$stmt = $db->prepare("update Products set name=?, price=?, description=? where id=?");
+    $stmt->bind_param('sdsi', $_POST['updateName'], $_POST['updatePrice'], $_POST['updateDescription'], $_POST['product']);
+    if(!$stmt->execute()) return null;	
+}
+
+// Delete the row in the Products table that has the id = $_POST['deleteProduct']
+if(!empty($_POST['deleteProduct'])) {
+	require_once('db.inc');
+	$stmt = $db->prepare("delete from Products where id=?");
+	$stmt->bind_param('i', $_POST['deleteProduct']);
+	if(!$stmt->execute()) return null;
+	unlink('product'.$_POST['deleteProduct'].'.jpg');
+}
+
+// Add a new product row to the Products table with the information provided in the newProductForm. Upload a new image for this product to the server.
+// If one of the fields was left blank, do not perform an insert or upload an image.
+if(!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['description']) && ($_FILES['image']['size'] > 0)) {
+	require_once('db.inc');
+	$stmt = $db->prepare("insert into Products (name, price, description) values (?, ?, ?)");
+	$stmt->bind_param('sds', $_POST['name'], $_POST['price'], $_POST['description']);
+	if(!$stmt->execute()) return null;
+	$id = $db->insert_id;
+	move_uploaded_file($_FILES['image']['tmp_name'], 'product'.$id.'.jpg');
+}
+?>
+<html>
+	<head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Admin: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script language='javascript' src='script.js'></script>
+	</head>
+	<body>
+    	<!--<pre>
+        	<?php
+        	print 'COOKIE:'; print_r($_COOKIE);
+       		print 'POST:'; print_r($_POST);
+        	print 'SESSION:'; print_r($_SESSION);
+        	?>
+    	</pre>-->
+    	<div id='content'>
+        
+        	<!--Shows an admin the currently posted product listings and allows them to be updated/deleted-->
+        	<h2 id='contentHeader1'>Currently Listed Products</h2>
+    		<table id='productTable'>
+    		<?php
+				// Display the current product listings for the website
+				// In this display, show an edit button (submit button for a form whose action='update.html')
+				require_once('db.inc');
+				$result = $db->query('select * from Products');
+				while($row = $result->fetch_object()) {
+					print "<tr>";
+					print "<td><img class='productImg' src='product".$row->id.".jpg' alt='".$row->name."'></td>";
+					print "<td><b>".$row->name."</b></td>";
+					print "<td>$".$row->price."</td>";
+					print "<td class='productDescription'>".$row->description."</td>";
+					print "<td><form action='update.html' method='post'>
+						<input type='hidden' name='user' value='".$_POST['user']."'>
+						<input type='hidden' name='pass' value='".$_POST['pass']."'>
+						<input type='hidden' name='product' value='".$row->id."'>
+						<input type='hidden' name='productName' value='".$row->name."'>
+						<button class='editBtn' type='submit'>Edit</button>
+						</form>
+						<form action='delete.html' method='post'>
+						<input type='hidden' name='user' value='".$_POST['user']."'>
+						<input type='hidden' name='pass' value='".$_POST['pass']."'>
+						<input type='hidden' name='deleteProduct' value='".$row->id."'>
+						<input type='hidden' name='productName' value='".$row->name."'>
+						<button class='deleteBtn' type='submit'>Delete</button>
+						</form></td>";
+					print "</tr>";
+				}
+			?>
+    		</table>
+        	<hr>
+        	
+        	<!--Form for an admin to add a new product listing-->
+        	<h3 id='contentHeader2'>New Product Form</h3>
+        	<form action='admin.html' enctype='multipart/form-data' method='post'>
+            	<input type='hidden' name='MAX_FILE_SIZE' value='1900000'>
+            	<table id='newProductForm'>
+                	<tr>
+                    	<td>Image Name: </td>
+                    	<td class='input'><input type='file' name='image'></td>
+                	</tr>
+                	<tr>
+                    	<td>Product Name: </td>
+                    	<td class='input'><input type='text' name='name'></td>
+                	</tr>
+                	<tr>
+                    	<td>Product Price: </td>
+                    	<td class='input'><input type='number' name='price'></td>
+                	</tr>
+                	<tr>
+                    	<td>Product Description: </td>
+                    	<td><textarea id='description' name='description'></textarea></td>
+                	</tr>
+            	</table>
+            	<br>
+            	<?php
+				// Pass along the username and password so that the submit to admin.html will not result in a redirect to login.html
+				print "<input type='hidden' name='user' value='".$_POST['user']."'>
+						<input type='hidden' name='pass' value='".$_POST['pass']."'>";
+				?>
+            	<button type='submit' id='newProductBtn'>Add New Product</button>
+        	</form>
+            <hr>
+            <a href='login.html?logoff=1'><button id='logoffBtn'>logoff</button></a>   
+    	</div>
+    	<?php
+		include('header.inc');
+		include('menu.inc');
+		include('footer.inc');
+		?>   
+	</body>
+</html>

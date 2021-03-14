@@ -1,0 +1,36 @@
+<!--Creator: Eli Hughes
+    File: contact.html
+    Purpose: html file which serves as the contact page for the company "Tony the Peanut Man".
+             The primary purpose of this file is to provide information on how to contact the 
+             company (phone, email, social media), and provides links to do so. This file includes
+             'header.inc', 'menu.inc' and 'footer.inc'.
+-->
+
+<html>
+    <head>
+    	<meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Contact: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+    </head>
+    <body>
+
+        <!--Company contact with link to email and Facebook-->
+        <div id='content'>
+            <h2 id='contentHeader1'>Contact Tony!</h2>
+            Phone: 843-762-0901
+            <br>
+            <a href='mailto:contact@tonythepeanutman.com'>Email</a>
+            <br>
+            <a href='http://facebook.com/tonythepeanutman'>Facebook</a>
+            <br>
+        </div>
+
+        <?php
+        include('header.inc');
+        include('menu.inc');
+        include('footer.inc');
+        ?>
+
+    </body>
+</html>

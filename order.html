@@ -1,0 +1,95 @@
+<!--Creator: Eli Hughes
+    File: order.html
+    Purpose: html file that serves as a form for filling out billing information
+             for an order. This file also contains links to 'style.css', 'thanks.html',
+             'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+<?php
+require_once('db.inc');
+require_once('cart.inc');
+if(empty($cart)) {
+	require_once('redirect.inc');
+	redirect('products.html');
+}
+?>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Order: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+    	<script language='javascript' src='script.js'></script>                          
+    </head>
+    <body>
+        <div id='content'>
+        	<?php
+			cart_table();
+
+			if(!empty($_GET['error'])) {
+ 				print "<div id='errorMsg3'>";
+ 				print $_GET['error'];
+ 				print "</div>";
+			}
+			?>
+        
+            <!--Order form for items selected in products.html-->
+            <form action='thanks.html' onsubmit='return submitHandler();'>
+            	<input type='hidden' name='product' value='<?php echo $_GET['product']; ?>'>
+                <table id='orderForm'>
+                    <tr>
+                        <td class='label'><b>Shipping Information</b></td>
+                        <td class='space'></td>
+                        <td class='label'><b>Payment Method</b></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='firstName' id='firstName' type='text' value='First Name'></td>
+                        <td></td>
+                        <td class='input'><input name='cardNumber' id='cardNumber' type='text' value='Credit Card'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='lastName' id='lastName' type='text' value='Last Name'></td>
+                        <td></td>
+                        <td class='input'><input name='securityCode' id='securityCode' type='text' value='Security Code'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='address' id='address' type='text' value='Address'></td>
+                        <td></td>
+                        <td class='input'><input name='expirationM' id='expirationM' type='text' value='Expiration Month'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='city' id='city' type='text' value='City'></td>
+                    	<td></td>
+                    	<td class='input'><input name='expirationY' id='expirationY' type='text' value='Expiration Year'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='state' id='state' type='text' value='State'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='zip' id='zip' type='text' value='Zipcode'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='phone' id='phone' type='text' value='Phone Number'></td>
+                    </tr>
+                    <tr>
+                        <td class='input'><input name='email' id='email' type='text' value='Email'></td>
+                    </tr>
+                </table>
+            	<div id='orderErrMsg'>
+                	One or more fields are left blank.
+            	</div>
+            	<div id='orderErrMsg2'>
+                	False information was provided.
+            	</div>
+            	<div id='submit'>
+                	<button id='submitBtn' type='submit'>Place Order</button>
+            	</div>
+            </form>
+        </div>
+
+        <?php
+        include('header.inc');
+        include('menu.inc');
+        include('footer.inc');
+        ?>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!--Creator: Eli Hughes
+    File: thanks.html
+    Purpose: html file that thanks a customer after having submitted an order
+             form through order.html This file also contains links to 'style.css'
+             'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+
+<?php
+if(empty($_GET['product']) || $_GET['product'] < 1 || $_GET['product'] > 3) {
+ 	include('redirect.inc');
+ 	redirect('products.html');
+}
+	
+if(empty(trim($_GET['firstName']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('First Name is a required field.'));
+}
+
+if(empty(trim($_GET['lastName']))) {
+ 	include('redirect.inc');
+	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Last Name is a required field.'));
+}
+
+if(empty(trim($_GET['address']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Address is a required field.'));
+}
+
+if(empty(trim($_GET['city']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('City is a required field.'));
+}
+
+if(empty(trim($_GET['state']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('State is a required field.'));
+}
+
+if(empty(trim($_GET['zip']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Zip is a required field.'));
+}
+
+if(empty(trim($_GET['phone']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Phone is a required field.'));
+}
+
+if(empty(trim($_GET['email']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Email is a required field.'));
+}
+
+if(empty(trim($_GET['cardNumber']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Card Number is a required field.'));
+}
+
+if(empty(trim($_GET['securityCode']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Security Code is a required field.'));
+}
+
+if(empty(trim($_GET['expirationM']))) {
+ 	include('redirect.inc');
+ 	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Expiration Month is a required field.'));
+}
+
+if(empty(trim($_GET['expirationY']))) {
+ 	include('redirect.inc');
+	redirect('order.html?product='.$_GET['product'].'&error='.urlencode('Expiration Year is a required field.'));
+}
+?>
+
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Thank You: Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+    </head>
+    <body>
+
+        <!--Thank you message-->
+        <div id='content'>
+            <h1 id='contentHeader1'>Your Order Has Been Placed. Thank You For Shopping With Us!</h1>
+        </div>
+
+        <?php
+        include('header.inc');
+        include('menu.inc');
+        include('footer.inc');
+        ?>
+
+    </body>
+</html>

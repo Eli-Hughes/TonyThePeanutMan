@@ -1,0 +1,211 @@
+/*
+Creator: Eli Hughes
+File: style.css
+Purpose: CSS stylesheet for index.html, contact.html, products.html, info.html, admin.html, 
+		 delete.html, login.html, order.html, thanks.html, update.html
+         header.inc, menu.inc, and footer.inc
+*/
+
+body {
+    background-color:#A17A4D;
+}
+
+#menu {
+    position:fixed;
+	box-sizing:border-box;
+	width:75vw;
+	padding-right:4vw;
+	top:0;
+	right:0;
+	padding-top:1.5vh;
+	padding-bottom:1.5vh;
+    font-family:sans-serif;
+    font-size:2.75vh;
+	text-align:right;
+	border-bottom:.1vh solid #fff;
+    background-color:#696969;
+}
+
+.menuBtn {
+	font-style: sans-serif;
+	font-size:2.75vh;
+	padding:0;
+	margin:0;
+	color:#000;
+	background-color:#696969;
+	border:0;
+	
+}
+
+#cartIcon {
+	position:absolute;
+	padding-left:1ch;
+	height:2.75vh;
+	width:2.75vh;
+}
+
+#header {
+    position:absolute;
+    width:95vw;
+    top:6.25vh;
+    left:2.5vw;
+	padding-top:2.5vh;
+	padding-bottom:1.5vh;
+    font-family: sans-serif;
+    font-size:2.75vh;
+    text-align:center;
+	border-bottom:.1vh solid #fff;
+}
+
+#companyName {
+    margin-top:1.5vh;
+	margin-bottom:2.5vh;
+    padding:0;
+    font-size:3.5vh;
+}
+
+#content {
+	position:absolute;
+	width:95vw;
+    top:50vh;
+	left:2.5vw;
+	padding-bottom:2.75vh;
+	margin-bottom:2.75vh;
+    font-family:sans-serif;
+    font-size:2.75vh;
+    text-align:center;
+	border-bottom:.1vh solid #fff;
+	
+}
+
+#contentHeader1, #contentHeader2 {
+    margin-top:1.5vh;
+	margin-bottom:2.5vh;
+	padding:0;
+    font-size:3.5vh;
+}
+
+#story {
+    text-align:left;
+}
+
+#productTable {
+	font-family:sans-serif;
+	font-size:2.75vh;
+	margin:0vw auto;
+	border-collapse:separate;
+	border-spacing:3vh 3vw;
+}
+
+.productDescription {
+	width:50vw;
+	word-wrap:normal;
+}
+
+.addToCartBtn, #updateQuantitiesBtn, #submitBtn, #loginBtn, .editBtn, .deleteBtn, #logoffBtn, #newProductBtn, #updateBtn {
+	font-family:sans-serif;
+	font-size:2.75vh;
+	background-color:#A17A4D;
+	border:1px solid #000;
+	border-radius:1em;
+	outline:0;
+}
+
+.addToCartBtn:hover, #updateQuantitiesBtn:hover, #submitBtn:hover, #loginBtn:hover, .editBtn:hover,  .deleteBtn:hover, #logoffBtn:hover, #newProductBtn:hover, #updateBtn:hover {
+	transition:.2s;
+	background-color:#696969;
+	border:1px solid #fff;
+}
+
+#cart, #orderForm, #loginForm, #newProductForm, #updateForm{
+    font-family:sans-serif;
+    font-size:2.75vh;
+	margin:0vw auto;
+}
+
+.quantity {
+	font-family:sans-serif;
+	font-size:2.75vh;
+	width:4ch;
+}
+
+#updateQuantities {
+	text-align:center;
+}
+
+.space {
+    width:25%;
+}
+
+.input input {
+    font-family:sans-serif;
+	font-size:2.75vh;
+}
+
+#orderErrMsg {
+	display:none;
+	color:#f00;
+}
+
+#orderErrMsg2 {
+	display:none;
+	color:#f00;
+}
+
+#orderErrMsg3 {
+	color:#f00;
+}
+
+#submit {
+	text-align:right;
+}
+
+#submit button{
+	font-family:sans-serif;
+    font-size:2.75vh;
+}
+
+#login {
+	text-align:center;
+	border:0px solid black;
+}
+
+#description, #updateDescription {
+	font-family:sans-serif;
+	font-size:2.75vh;
+	height:25vh;
+	width:25vw;
+}
+
+#footer {
+	position:fixed;
+	box-sizing:border-box;
+	width:25vw;
+	top:0;
+	left:0;
+	padding-top:1.5vh;
+	padding-bottom:1.5vh;
+	padding-left:2.5vw;
+	font-style:sans-serif;
+	font-size:2.75vh;
+    text-align:left;
+	border-bottom:.1vh solid #fff;
+	background-color:#696969;	
+}
+
+a {
+    color:#00008B;
+}
+
+#logo {
+	width:8em;
+	height:8em;
+}
+
+.productImg {
+    width:150px;
+}
+
+#extraImg1, #extraImg2 {
+    width:600px;
+}

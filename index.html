@@ -1,0 +1,34 @@
+<!--Creator: Eli Hughes
+    File: index.html
+    Purpose: html file that serves as the home page for the company "Tony the Peanut Man", providing
+            information on why you should use the company. This file also contains links to 'style.css', 
+            'header.inc', 'menu.inc', and 'footer.inc'.
+-->
+
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale:1.0'>
+        <title>Tony the Peanut Man</title>
+    	<link rel='shortcut icon' type='image/png' href='logo.png'>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script language='javascript' src='script.js'></script>
+    </head>
+    <body>
+
+        <!--Overview of the company's merits, and link to info.html-->
+        <div id='content'>
+            <h2 id='contentHeader1'>Charleston's Finest Peanut Merchant</h2>
+            <i>"got some some boiled got some roasted, got some stewed got some toasted.”</i>
+            <p id='story'>
+                Tony the Peanut Man, aka Anthony Wright, has been a halmark in the Charleston Peanut industry since 1998, with his peanuts being found in several super-markets and convenience stores including Piggly-Wiggly, BI-LO, and Harris Teeter. In addition, Tony's peanuts are always present at all of the local high school and college sporting events in the area, and he is even is a well known insperational figure, devoting time to help the homeless and offer inspirational talks to the younger generations on the importance of hard work and perserverance. Ask anyone, if you need a reliable, cheerful, honorable peanut distriputor, then Tony is your man! <a href='info.html'><i>(Read the full story!)</i></a>
+            </p>
+        </div>
+
+        <?php
+        include('header.inc');
+        include('menu.inc');
+        include('footer.inc');
+        ?>
+
+    </body>
+</html>
